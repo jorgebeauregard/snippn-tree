@@ -55,10 +55,10 @@ export default async function Home() {
         height={100}
         className="rounded-full mx-auto"
       />
-      <h1 className="text-lg sm:text-xl font-bold mt-4 text-white">{userData.name}</h1>
-      <p className="text-white">{userData.handle}</p>
+      <h1 className="text-lg sm:text-xl font-bold mt-4 text-white">{userData.handle}</h1>
+      <p className="text-white">Bibian Alessia ~ Art and Tattoos 🎨✨</p>
       
-      <div className="mt-6 space-y-3 w-full max-w-2xl px-8">
+      <div className="mt-8 space-y-3 w-full max-w-2xl px-8">
         {sortedLinks.map((link) => (
           <a 
             key={link.id} 
