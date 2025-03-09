@@ -47,7 +47,7 @@ export default async function Home() {
   const sortedLinks = userData.links ? userData.links.sort((a, b) => a.title.localeCompare(b.title)) : [];
  
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-[#c1d1a3] to-[#6e875f] p-4 text-center">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-[#c1d1a3] to-[#6e875f] p-4 text-center relative">
       <Image
         src={"https://ugc.production.linktr.ee/q3otGprT72spN626JDrg_IMG_5125.JPG"}
         alt="Profile Picture"
@@ -58,7 +58,7 @@ export default async function Home() {
       <h1 className="text-lg sm:text-xl font-bold mt-4 text-white">{userData.name}</h1>
       <p className="text-white">{userData.handle}</p>
       
-      <div className="mt-6 space-y-3 w-full max-w-md">
+      <div className="mt-6 space-y-3 w-full max-w-2xl px-8">
         {sortedLinks.map((link) => (
           <a 
             key={link.id} 
@@ -69,6 +69,11 @@ export default async function Home() {
           </a>
         ))}
       </div>
+      
+      {/* Footer */}
+      <footer className="absolute bottom-4 text-gray-300 text-sm">
+        © {new Date().getFullYear()} Snippn.com. All rights reserved.
+      </footer>
     </div>
   );
 }
