@@ -10,10 +10,10 @@ interface Link {
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json(); // Extract email from request body
+    const { username } = await req.json(); // Extract email from request body
 
-    if (!email) {
-      return NextResponse.json({ error: "Missing email" }, { status: 400 });
+    if (!username) {
+      return NextResponse.json({ error: "Missing username" }, { status: 400 });
     }
 
     const response = await fetch("https://snippn.com/fetchTreeUserInfo?", {
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email }) // Send email instead of handle
+      body: JSON.stringify({ username }) // Send email instead of handle
     });
 
     if (!response.ok) {

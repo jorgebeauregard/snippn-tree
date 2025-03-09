@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
 export const dynamic = "force-dynamic";
 
 interface Link {
@@ -15,13 +17,13 @@ interface UserData {
   links: Link[];
 }
 
-async function fetchUserData(): Promise<UserData | null> {
+async function fetchUserData(username: string): Promise<UserData | null> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   try {
     const response = await fetch(`${baseUrl}/api/links`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'plasmagandalla@gmail.com' })
+      body: JSON.stringify({ username })
     });
 
     if (!response.ok) {
@@ -36,12 +38,19 @@ async function fetchUserData(): Promise<UserData | null> {
   }
 }
 
-export default async function Home() {
-  const userData: UserData | null = await fetchUserData();
+export default async function Home({ params }: { params: Promise<{username: string}> }) {
+  const { username } = await params;
+  
+  if (!username) {
+    return notFound(); // Show 404 if no username is provided
+  }
+
+  const userData: UserData | null = await fetchUserData(username);
 
   if (!userData) {
-    return <div className="text-white text-center mt-10">Failed to load data. Please try again later.</div>;
+    return notFound(); // Show 404 if user is not found
   }
+
 
   // Sort links alphabetically by title
   const sortedLinks = userData.links ? userData.links.sort((a, b) => a.title.localeCompare(b.title)) : [];
