@@ -81,7 +81,7 @@ export default async function Home({ params }: { params: Promise<{username: stri
       
       {/* Footer */}
       <footer className="mt-auto pb-2 text-gray-300 text-sm">
-        © {new Date().getFullYear()} Snippn.com. All rights reserved.
+        snippn | beauregard | {new Date().getFullYear()}
       </footer>
     </div>
   );
