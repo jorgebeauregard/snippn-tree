@@ -6,6 +6,7 @@ interface Link {
   original_url: string;
   description: string;
   created_at: string;
+  show_in_tree: boolean
 }
 
 export async function POST(req: Request) {
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing username" }, { status: 400 });
     }
 
-    const response = await fetch("https://snippn.com/fetchTreeUserInfo?", {
+    const response = await fetch("https://snippn.com/getAllLinks?", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
     const data = await response.json();
 
     // Explicitly type links as Link[]
-    const links: Link[] = data.links;
+    const links: Link[] = data.links.filter((link: Link) => link.show_in_tree === true);
 
     // Format response to match frontend expectations
     const formattedData = {
