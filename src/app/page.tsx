@@ -38,14 +38,9 @@ async function fetchUserData(username: string): Promise<UserData | null> {
   }
 }
 
-export default async function Home({ params }: { params: Promise<{username: string}> }) {
-  const { username } = await params;
-  
-  if (!username) {
-    return notFound(); // Show 404 if no username is provided
-  }
+export default async function Home() {
 
-  const userData: UserData | null = await fetchUserData(username);
+  const userData: UserData | null = await fetchUserData("plasmagandalla");
 
   if (!userData) {
     return notFound(); // Show 404 if user is not found
