@@ -53,7 +53,7 @@ export default async function Home() {
   return (
   <div className="flex flex-col items-center h-screen bg-gradient-to-b from-[#c1d1a3] to-[#6e875f] p-4 text-center relative">
       <Image
-        src={"https://ugc.production.linktr.ee/q3otGprT72spN626JDrg_IMG_5125.JPG"}
+        src={"https://mobiusforms.blob.core.windows.net/forms-images/profile2.jpg"}
         alt="Profile Picture"
         width={100}
         height={100}
